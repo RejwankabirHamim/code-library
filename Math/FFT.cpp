@@ -45,10 +45,29 @@ vector<long long> multiply(vector<int> &a, vector<int> &b) {
   fft(z, 1);
   vector<long long> ret(sz);
   for(int i = 0; i < sz; ++i) ret[i] = (long long) round(z[i].a);
-  while((int)ret.size() > 1 && ret.back() == 0) ret.pop_back();
+  while((int)ret.size() > 1 && ret.back() == 0) ret.pop_back();//this line may be comment out
   return ret;
 }
 //https://codeforces.com/contest/993/problem/E
+/*for complex number multiply function will be like that
+
+vector<base> multiply(vector<base> &a, vector<base> &b) {
+  int n = a.size(), m = b.size(), t = n + m - 1, sz = 1;
+  while(sz < t) sz <<= 1;
+  vector<base> x(sz), y(sz), z(sz);
+  for(int i = 0 ; i < sz; ++i) {
+    x[i] = i < (int)a.size() ? a[i] : base(0, 0);
+    y[i] = i < (int)b.size() ? b[i] : base(0, 0);
+  }
+  fft(x), fft(y);
+  for(int i = 0; i < sz; ++i) z[i] = x[i] * y[i];
+  fft(z, 1);
+  vector<base> ret(sz);
+  for(int i = 0; i < sz; ++i) ret[i] = base(round(z[i].a),z[i].b);
+  while((int)ret.size() > 1 && ret.back() == 0) ret.pop_back(); //this line may be comment out
+  return ret;
+}
+*/
 int main()
 {
     long long w,te,i,j,k,n,m,x;
